@@ -1,0 +1,47 @@
+<h1>New album</h1>
+
+<%= render "form", album: @album %>
+
+<br>
+
+<style>
+  .album-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+
+  .action-button, .action-button-danger {
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .action-button {
+    background-color: #4CAF50; 
+    color: white;
+  }
+
+  .action-button:hover {
+    background-color: #45a049; 
+  }
+
+  .action-button-danger {
+    background-color: #f44336; 
+    color: white;
+  }
+
+  .action-button-danger:hover {
+    background-color: #d32f2f;
+  }
+</style>
+
+<div class="album-actions mb-5">
+  <%= button_to "Back to albums", albums_path, method: :get, class: "action-button" %>
+</div>
+

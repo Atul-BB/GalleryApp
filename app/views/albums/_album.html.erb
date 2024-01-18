@@ -1,0 +1,58 @@
+<div id="<%= dom_id(album) %>" class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title text-center mb-4">
+        Album Details: <%= album.title %>
+      </h4>
+
+      <div class="row">
+        <div class="col-md-6">
+          <strong>Cover Photo:</strong>
+          <div class="mb-3">
+            <%= image_tag(album.cover_image, alt: "Album Cover", class:
+            'img-fluid rounded') %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <strong>Photos:</strong>
+          <% if album.photos.attached? %>
+          <div class="row">
+            <% album.photos.each do |photo| %>
+            <div class="col-6 col-lg-4 mb-3">
+              <%= image_tag(photo, class: 'img-fluid rounded') %>
+            </div>
+            <% end %>
+          </div>
+          <% else %>
+          <p>No photos available.</p>
+          <% end %>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-md-6">
+          <strong>Description:</strong>
+          <p><%= album.description %></p>
+        </div>
+
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-6">
+              <strong>Tag:</strong>
+              <p><%= album.all_tags %></p>
+            </div>
+            <div class="col-6">
+              <strong>Price:</strong>
+              <p><%= album.price %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

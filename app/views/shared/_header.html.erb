@@ -1,0 +1,96 @@
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(to right, #3498db, #2c3e50);
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-brand {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .navbar-nav {
+    margin-left: auto;
+  }
+
+  .nav-link {
+    color: #fff;
+    margin: 0 15px;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+
+  .nav-link:hover {
+    color: #ffd700; 
+  }
+
+  .user-info, .user-actions, .guest-actions {
+    color: #fff;
+  }
+
+  .btn {
+    margin-right: 10px;
+  }
+
+  .dropdown-menu {
+    background-color: #3498db;
+    color: #fff;
+  }
+
+  .dropdown-menu a {
+    color: #fff;
+  }
+</style>
+
+
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <%= link_to "Gallery", root_path, class: "nav-link active" %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "nav-link active" %>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">price</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Stores</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
+              <% if user_signed_in? %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Logged in as <%= current_user.email %>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                    <li><%= link_to 'Edit profile', edit_user_registration_path, class: 'dropdown-item' %></li>
+                    <li><%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, method: :delete, class: 'dropdown-item' %></li>
+                  </ul>
+                </li>
+              <% else %>
+                <div class="guest-actions">
+                  <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-success' %>
+                  <%= link_to "Login", new_user_session_path, class: 'btn btn-primary' %>
+                </div>
+              <% end %>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+</nav>
